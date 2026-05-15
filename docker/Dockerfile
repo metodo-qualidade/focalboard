@@ -16,10 +16,10 @@ WORKDIR /go/src/focalboard
 ADD . /go/src/focalboard
 
 # Get target architecture 
-ARG TARGETOS
-ARG TARGETARCH  
+#ARG TARGETOS
+#ARG TARGETARCH  
 
-RUN EXCLUDE_PLUGIN=true EXCLUDE_SERVER=true EXCLUDE_ENTERPRISE=true make server-docker os=${TARGETOS} arch=${TARGETARCH}
+RUN EXCLUDE_PLUGIN=true EXCLUDE_SERVER=true EXCLUDE_ENTERPRISE=true make server-docker os=linux arch=amd64
 
 ## Final image
 FROM debian:buster-slim@sha256:5b0b1a9a54651bbe9d4d3ee96bbda2b2a1da3d2fa198ddebbced46dfdca7f216
