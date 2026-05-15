@@ -19,8 +19,7 @@ ADD . /go/src/focalboard
 #ARG TARGETOS
 #ARG TARGETARCH  
 
-RUN EXCLUDE_PLUGIN=true EXCLUDE_SERVER=true EXCLUDE_ENTERPRISE=true make server-docker os=linux arch=amd64 > build_log.txt 2>&1 || (echo "=== LOG DE ERRO DO MAKE ===" && cat build_log.txt && exit 1)
-
+RUN BUILD_HASH=coolify BUILD_NUMBER=dev EXCLUDE_PLUGIN=true EXCLUDE_SERVER=true EXCLUDE_ENTERPRISE=true make server-docker os=linux arch=amd64
 ## Final image
 FROM debian:buster-slim@sha256:5b0b1a9a54651bbe9d4d3ee96bbda2b2a1da3d2fa198ddebbced46dfdca7f216
 
