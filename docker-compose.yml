@@ -1,5 +1,5 @@
 services:
-focalboard:
+  focalboard:
     build:
       context: .
       dockerfile: docker/Dockerfile
@@ -10,10 +10,7 @@ focalboard:
     environment:
       - FB_PORT=8000
       - FB_DBTYPE=postgres
-      # Configuração de conexão: postgres://user:password@host:port/dbname?sslmode=disable
       - FB_DBCONFIGSTRING=postgres://focaluser:focalpass@db-focal:5432/focalboard?sslmode=disable
-    volumes:
-      - focalboard_custom_data:/opt/focalboard/data
     depends_on:
       db-focal:
         condition: service_healthy
@@ -26,8 +23,6 @@ focalboard:
       - POSTGRES_USER=focaluser
       - POSTGRES_PASSWORD=focalpass
       - POSTGRES_DB=focalboard
-    volumes:
-      - focalboard_db_data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U focaluser -d focalboard"]
       interval: 5s
