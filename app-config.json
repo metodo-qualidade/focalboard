@@ -3,7 +3,7 @@
 	"port": 8088,
 	"dbtype": "sqlite3",
 	"dbconfig": "./focalboard.db",
-	"useSSL": false,
+	"useSSL": true,
 	"webpath": "./pack",
 	"filespath": "./files",
 	"telemetry": true,
