@@ -1,8 +1,8 @@
 services:
-  focalboard:
+focalboard:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: docker/Dockerfile
     container_name: focalboard-custom
     restart: always
     ports:
