@@ -8,20 +8,22 @@ FROM golang:1.18.3 AS backend
 WORKDIR /go/src/focalboard
 COPY . .
 COPY --from=frontend /webapp/pack webapp/pack
-RUN EXCLUDE_PLUGIN=true make server-linux
 
-# Estágio 3: Container Final de Execução
+RUN apt-get update && apt-get install -y make gcc libc6-dev
+
+
+RUN make server-linux
+
+
 FROM debian:stretch-slim
 WORKDIR /opt/focalboard
+
 
 COPY --from=backend /go/src/focalboard/bin/linux/focalboard-server .
 COPY --from=backend /go/src/focalboard/webapp/pack webapp/pack
 COPY --from=backend /go/src/focalboard/config.json .
 
-
 RUN mkdir -p /opt/focalboard/data && chmod 777 /opt/focalboard/data
 
 EXPOSE 8000
-
-
 CMD ["./focalboard-server"]
