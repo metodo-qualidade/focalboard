@@ -14,7 +14,7 @@ FROM golang:1.18.3@sha256:b203dc573d81da7b3176264bfa447bd7c10c9347689be405403818
 
 WORKDIR /go/src/focalboard
 ADD . /go/src/focalboard
-
+RUN apt-get update && apt-get install -y gcc libc6-dev make git
 # Get target architecture 
 #ARG TARGETOS
 #ARG TARGETARCH  
