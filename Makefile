@@ -5,7 +5,7 @@ PACKAGE_FOLDER = focalboard
 # Build Flags
 BUILD_NUMBER ?= $(BUILD_NUMBER:)
 BUILD_DATE = $(shell date -u)
-BUILD_HASH = $(shell git rev-parse HEAD)
+BUILD_HASH = $(shell git rev-parse HEAD 2>/dev/null || echo "coolify-build")
 # If we don't set the build number it defaults to dev
 ifeq ($(BUILD_NUMBER),)
 	BUILD_NUMBER := dev
